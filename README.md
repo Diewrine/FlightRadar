@@ -1,5 +1,46 @@
 # FlightRadar24
 
+# -------------------------------------------------------
+# Solutions pour l'industrialisation
+ 
+Pour l'industrialisation, on peut mettre en place deux solutions.
+
+## 1.
+   Exécuter le script avec un processeur Nifi. 
+   On pourra filtrer les outputs (success & failed) et ajouter des processeur
+   LogAttribute pour avoir les logs et un meilleur suivi du job.
+   L'outil Apache Nifi prend en compte la tolérance au pannes et des systèmes
+   d'alerte peuvent être mis en place pour avoir un overview sur le processus
+   d'exécution.
+
+   De ce fait, l'architecture sera comme suit: le traitement et la récupération des données se fera avec
+   Spark(pyspark). L'industrialisation et l'orchestration peut être lancé avec
+   apache Nifi qui va en même temps permettre d'ajouter les métadata. L'output de dernier sera
+   sauvegarder sur HDFS pour l'historisation des données. Pour la partie visualisation, on peut
+   utiliser Kibana ou PowerBi.
+
+
+
+<img src="media-assets/Nifi_archi.png"/>
+
+
+## 2.
+   L'autre solution c'est d'utiliser Databricks pipeline pour scheduler les instructions
+   et ainsi aussi avoir un suivi du traitement. L'interface de Databricks est assez facile à
+   utiliser et la plateforme offre beaucoup de uses case pour ce qui est de l'exploitation des
+   taches dans un pipeline.
+   Databricks est une plateforme assez complet. La visualisation, le scheduling des taches, les alertes, etc, tout est
+   embarqué avec.
+
+
+   <img src="media-assets/databricks example 1.svg"/>
+   
+   
+   <img src="media-assets/databricks example 2.png"/>
+
+   
+# -------------------------------------------------------
+
 # Sujet
 
 
